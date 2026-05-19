@@ -21,7 +21,7 @@ from src.utils import save_object, evaluate_models
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path = os.path.join("artifact", "model.pkl")  # ✅ fixed path
+    trained_model_file_path = os.path.join("artifact", "model.pkl") 
 
 
 class ModelTrainer:
@@ -77,7 +77,7 @@ class ModelTrainer:
                 }
             }
 
-            # ✅ Evaluate models
+            #  Evaluate models
             model_report: dict = evaluate_models(
                 X_train=X_train,
                 y_train=y_train,
@@ -87,10 +87,10 @@ class ModelTrainer:
                 param=params
             )
 
-            # ✅ Debug prints (important)
+            #  Debug prints (important)
             print("MODEL REPORT:", model_report)
 
-            # ✅ Best model selection
+            #  Best model selection
             best_model_score = max(model_report.values())
             best_model_name = max(model_report, key=model_report.get)
             best_model = models[best_model_name]
@@ -100,7 +100,7 @@ class ModelTrainer:
 
             logging.info(f"Best model: {best_model_name} with score: {best_model_score}")
 
-            # ✅ ALWAYS save model (removed blocking condition)
+            #  ALWAYS save model (removed blocking condition)
             os.makedirs(os.path.dirname(self.model_trainer_config.trained_model_file_path), exist_ok=True)
 
             save_object(
@@ -110,7 +110,7 @@ class ModelTrainer:
 
             print("MODEL SAVED SUCCESSFULLY")
 
-            # ✅ Final evaluation
+            #  Final evaluation
             predicted = best_model.predict(X_test)
             r2_square = r2_score(y_test, predicted)
 
@@ -121,7 +121,7 @@ class ModelTrainer:
             raise CustomException(e, sys)
 
 
-# ✅ ADD THIS (you were missing execution)
+
 if __name__ == "__main__":
     try:
         from src.components.data_transformation import DataTransformation
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         trainer = ModelTrainer()
         score = trainer.initiate_model_trainer(train_arr, test_arr)
 
-        print("\n✅ FINAL R2 SCORE:", score)
+        print("\n FINAL R2 SCORE:", score)
 
     except Exception as e:
         print("MAIN ERROR:", e)
