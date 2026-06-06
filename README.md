@@ -6,7 +6,7 @@ A machine learning web application that predicts student academic performance ba
 
 ## 🚀 Live Demo
 If deployed on Streamlit:
-https://your-streamlit-app-link
+https://studentperformancepredictor-jcm67gksmjgdh7ygnuvhzd.streamlit.app/
 
 ---
 
